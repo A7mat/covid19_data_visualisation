@@ -1,4 +1,4 @@
-# bitc_price
+# covid-19 Data
 
 ## Project setup
 ```
