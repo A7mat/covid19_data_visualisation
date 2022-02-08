@@ -105,8 +105,7 @@ export default {
     };
   },
   async created() {
-    const { data } = await axios.get("http://covidtracking.com/api/us/daily");
-    // console.log(data.slice(0, 45));
+    const { data } = await axios.get("https://api.covidtracking.com/v1/us/daily.json"); // temporal for:"https://covidtracking.com/api/us/daily"
 
     data.forEach( d => {
       const date = moment(d.date, "YYYYMMDD").format("MM/DD");
@@ -128,14 +127,8 @@ export default {
       this.arrDeaths.push({ date, total: death });
 
     });
-      console.log(this.arrRecovered);
+      // console.log(this.arrRecovered);
   },
 };
 </script>
-
-<style>
-/* #app {
-
-} */
-</style>
 
