@@ -29,12 +29,13 @@
         <line-chart :chartData="arrOnVentilators" :options="chartOptions" label="On Ventilatior" :chartColors="onVentilatorsColors"> </line-chart>
       </div>
     </div>
-    <div class="row mt-5" v-if="arrRecovered.length > 0">
+    <!-- The API is returning incomplete data for recovered -->
+    <!-- <div class="row mt-5" v-if="arrRecovered.length > 0">
       <div class="col">
         <h2>Recovered</h2>
         <line-chart :chartData="arrRecovered" :options="chartOptions" label="Recovered" :chartColors="recoveredColors"> </line-chart>
       </div>
-    </div>
+    </div> -->
     <div class="row mt-5" v-if="arrDeaths.length > 0">
       <div class="col">
         <h2>Deaths</h2>
