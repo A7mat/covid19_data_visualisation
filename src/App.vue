@@ -4,30 +4,50 @@
       <div class="col text-center">
         <h1>COVID-19 Data Visualization</h1>
       </div>
-    </div>
-    <div class="row mt-5" v-if="arrPositiv.length > 0">
-      <div class="col">
-        <h2>Positive</h2>
-        <line-chart :chartData="arrPositiv" :options="chartOptions" label="Positive" :chartColors="positiveColors"> </line-chart>
+      <div class="row mt-5">
+        <div class="col" v-if="arrPositiv.length > 0">
+            <h2>Positive</h2>
+            <line-chart
+              :chartData="arrPositiv"
+              :options="chartOptions"
+              label="Positive"
+              :chartColors="positiveColors"
+            >
+            </line-chart>
+        </div>
+        <div class="col" v-if="arrHospitalized.length > 0">
+            <h2>Hospitalized</h2>
+            <line-chart
+              :chartData="arrHospitalized"
+              :options="chartOptions"
+              label="Hospitalized"
+              :chartColors="hospitalizedColors"
+            >
+            </line-chart>
+        </div>
       </div>
     </div>
-    <div class="row mt-5" v-if="arrHospitalized.length > 0">
-      <div class="col">
-        <h2>Hospitalized</h2>
-        <line-chart :chartData="arrHospitalized" :options="chartOptions" label="Hospitalized" :chartColors="hospitalizedColors"> </line-chart>
-      </div>
-    </div>
-    <div class="row mt-5" v-if="arrInIcu.length > 0">
-      <div class="col">
+    <div class="row">
+    <div class="col" v-if="arrInIcu.length > 0">
         <h2>In ICU</h2>
-        <line-chart :chartData="arrInIcu" :options="chartOptions" label="In ICE" :chartColors="inIcuColors"> </line-chart>
-      </div>
+        <line-chart
+          :chartData="arrInIcu"
+          :options="chartOptions"
+          label="In ICE"
+          :chartColors="inIcuColors"
+        >
+        </line-chart>
     </div>
-    <div class="row mt-5" v-if="arrOnVentilators.length > 0">
-      <div class="col">
+    <div class="col" v-if="arrOnVentilators.length > 0">
         <h2>On Ventilators</h2>
-        <line-chart :chartData="arrOnVentilators" :options="chartOptions" label="On Ventilatior" :chartColors="onVentilatorsColors"> </line-chart>
-      </div>
+        <line-chart
+          :chartData="arrOnVentilators"
+          :options="chartOptions"
+          label="On Ventilatior"
+          :chartColors="onVentilatorsColors"
+        >
+        </line-chart>
+    </div>
     </div>
     <!-- The API is returning incomplete data for recovered -->
     <!-- <div class="row mt-5" v-if="arrRecovered.length > 0">
@@ -39,7 +59,13 @@
     <div class="row mt-5" v-if="arrDeaths.length > 0">
       <div class="col">
         <h2>Deaths</h2>
-        <line-chart :chartData="arrDeaths" :options="chartOptions" label="Deaths" :chartColors="deathColors"> </line-chart>
+        <line-chart
+          :chartData="arrDeaths"
+          :options="chartOptions"
+          label="Deaths"
+          :chartColors="deathColors"
+        >
+        </line-chart>
       </div>
     </div>
   </div>
@@ -47,13 +73,13 @@
 
 <script>
 import axios from "axios";
-import moment from 'moment';
-import LineChart from './components/LineChart';
+import moment from "moment";
+import LineChart from "./components/LineChart";
 
 export default {
   name: "App",
   components: {
-    LineChart
+    LineChart,
   },
   data() {
     return {
@@ -102,13 +128,15 @@ export default {
       chartOptions: {
         responsive: true,
         maintainAspectRatio: false,
-      }
+      },
     };
   },
   async created() {
-    const { data } = await axios.get("https://api.covidtracking.com/v1/us/daily.json"); // temporal for:"https://covidtracking.com/api/us/daily"
+    const { data } = await axios.get(
+      "https://api.covidtracking.com/v1/us/daily.json"
+    ); // temporal for:"https://covidtracking.com/api/us/daily"
 
-    data.forEach( d => {
+    data.forEach((d) => {
       const date = moment(d.date, "YYYYMMDD").format("MM/DD");
 
       const {
@@ -120,15 +148,14 @@ export default {
         death,
       } = d;
 
-      this.arrPositiv.push({date, total: positive});
-      this.arrHospitalized.push({date, total: hospitalizedCurrently });
+      this.arrPositiv.push({ date, total: positive });
+      this.arrHospitalized.push({ date, total: hospitalizedCurrently });
       this.arrInIcu.push({ date, total: inIcuCurrently });
       this.arrOnVentilators.push({ date, total: onVentilatorCurrently });
       this.arrRecovered.push({ date, total: recovered });
       this.arrDeaths.push({ date, total: death });
-
     });
-      // console.log(this.arrRecovered);
+    // console.log(this.arrRecovered);
   },
 };
 </script>
