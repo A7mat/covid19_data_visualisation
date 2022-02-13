@@ -1,34 +1,35 @@
 <template>
   <div id="app" class="container">
+    <div class="col text-center mt-5">
+      <h1>COVID-19 Data Visualization</h1>
+    </div>
     <div class="row mt-5">
-      <div class="col text-center">
-        <h1>COVID-19 Data Visualization</h1>
+      <!-- Positiv Chart -->
+      <div class="col" v-if="arrPositiv.length > 0">
+        <h2>Positive</h2>
+        <line-chart
+          :chartData="arrPositiv"
+          :options="chartOptions"
+          label="Positive"
+          :chartColors="positiveColors"
+        >
+        </line-chart>
       </div>
-      <div class="row mt-5">
-        <div class="col" v-if="arrPositiv.length > 0">
-            <h2>Positive</h2>
-            <line-chart
-              :chartData="arrPositiv"
-              :options="chartOptions"
-              label="Positive"
-              :chartColors="positiveColors"
-            >
-            </line-chart>
-        </div>
-        <div class="col" v-if="arrHospitalized.length > 0">
-            <h2>Hospitalized</h2>
-            <line-chart
-              :chartData="arrHospitalized"
-              :options="chartOptions"
-              label="Hospitalized"
-              :chartColors="hospitalizedColors"
-            >
-            </line-chart>
-        </div>
+      <!-- Hospitalized Chart -->
+      <div class="col" v-if="arrHospitalized.length > 0">
+        <h2>Hospitalized</h2>
+        <line-chart
+          :chartData="arrHospitalized"
+          :options="chartOptions"
+          label="Hospitalized"
+          :chartColors="hospitalizedColors"
+        >
+        </line-chart>
       </div>
     </div>
-    <div class="row">
-    <div class="col" v-if="arrInIcu.length > 0">
+    <div class="row mt-5">
+      <!-- In ICU Chart -->
+      <div class="col" v-if="arrInIcu.length > 0">
         <h2>In ICU</h2>
         <line-chart
           :chartData="arrInIcu"
@@ -37,8 +38,9 @@
           :chartColors="inIcuColors"
         >
         </line-chart>
-    </div>
-    <div class="col" v-if="arrOnVentilators.length > 0">
+      </div>
+      <!-- On Ventilators Chart -->
+      <div class="col" v-if="arrOnVentilators.length > 0">
         <h2>On Ventilators</h2>
         <line-chart
           :chartData="arrOnVentilators"
@@ -47,17 +49,18 @@
           :chartColors="onVentilatorsColors"
         >
         </line-chart>
+      </div>
     </div>
-    </div>
-    <!-- The API is returning incomplete data for recovered -->
-    <!-- <div class="row mt-5" v-if="arrRecovered.length > 0">
+    <div class="row mt-5">
+      <!-- The API is returning incomplete data for recovered -->
+      <!-- <div class="row mt-5" v-if="arrRecovered.length > 0">
       <div class="col">
         <h2>Recovered</h2>
         <line-chart :chartData="arrRecovered" :options="chartOptions" label="Recovered" :chartColors="recoveredColors"> </line-chart>
       </div>
     </div> -->
-    <div class="row mt-5" v-if="arrDeaths.length > 0">
-      <div class="col">
+      <!-- Deaths Chart -->
+      <div class="col" v-if="arrDeaths.length > 0">
         <h2>Deaths</h2>
         <line-chart
           :chartData="arrDeaths"
@@ -160,3 +163,6 @@ export default {
 };
 </script>
 
+<style>
+@import "./assets/styles/style.css";
+</style>
