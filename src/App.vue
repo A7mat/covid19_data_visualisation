@@ -1,11 +1,11 @@
 <template>
   <div id="app" class="container">
-    <div class="col text-center mt-5">
+    <div class="col text-center mt-4">
       <h1>COVID-19 Data Visualization</h1>
     </div>
-    <div class="row mt-5">
+    <div class="row">
       <!-- Positiv Chart -->
-      <div class="col" v-if="arrPositiv.length > 0">
+      <div class="col card mt-5 mx-3" v-if="arrPositiv.length > 0">
         <h2>Positive</h2>
         <line-chart
           :chartData="arrPositiv"
@@ -16,7 +16,7 @@
         </line-chart>
       </div>
       <!-- Hospitalized Chart -->
-      <div class="col" v-if="arrHospitalized.length > 0">
+      <div class="col card mt-5 mx-3" v-if="arrHospitalized.length > 0">
         <h2>Hospitalized</h2>
         <line-chart
           :chartData="arrHospitalized"
@@ -27,9 +27,9 @@
         </line-chart>
       </div>
     </div>
-    <div class="row mt-5">
+    <div class="row">
       <!-- In ICU Chart -->
-      <div class="col" v-if="arrInIcu.length > 0">
+      <div class="col card mt-5 mx-3" v-if="arrInIcu.length > 0">
         <h2>In ICU</h2>
         <line-chart
           :chartData="arrInIcu"
@@ -40,7 +40,7 @@
         </line-chart>
       </div>
       <!-- On Ventilators Chart -->
-      <div class="col" v-if="arrOnVentilators.length > 0">
+      <div class="col card mt-5 mx-3" v-if="arrOnVentilators.length > 0">
         <h2>On Ventilators</h2>
         <line-chart
           :chartData="arrOnVentilators"
@@ -51,7 +51,7 @@
         </line-chart>
       </div>
     </div>
-    <div class="row mt-5">
+    <div class="row">
       <!-- The API is returning incomplete data for recovered -->
       <!-- <div class="row mt-5" v-if="arrRecovered.length > 0">
       <div class="col">
@@ -60,7 +60,7 @@
       </div>
     </div> -->
       <!-- Deaths Chart -->
-      <div class="col" v-if="arrDeaths.length > 0">
+      <div class="col card mt-5 mx-3" v-if="arrDeaths.length > 0">
         <h2>Deaths</h2>
         <line-chart
           :chartData="arrDeaths"
@@ -164,5 +164,12 @@ export default {
 </script>
 
 <style>
-@import "./assets/styles/style.css";
+/* @import "./assets/styles/style.css"; */
+
+h2 {
+  text-align: center;
+}
+.card {
+    background-color: #F5F5F5!important;
+}
 </style>
