@@ -3,9 +3,12 @@
     <div class="col text-center mt-4">
       <h1>COVID-19 Data Visualization</h1>
     </div>
-    <div class="row">
+    <div class="alert alert-warning" role="alert">
+      As of <b>March 7, 2021</b> the API used for fetching the data was no longer collecting new data :(
+    </div>
+    <div class="row mt-3">
       <!-- Positiv Chart -->
-      <div class="col card mt-5 mx-3" v-if="arrPositiv.length > 0">
+      <div class="col card mx-3" v-if="arrPositiv.length > 0">
         <h2>Positive</h2>
         <line-chart
           :chartData="arrPositiv"
@@ -16,7 +19,7 @@
         </line-chart>
       </div>
       <!-- Hospitalized Chart -->
-      <div class="col card mt-5 mx-3" v-if="arrHospitalized.length > 0">
+      <div class="col card mx-3" v-if="arrHospitalized.length > 0">
         <h2>Hospitalized</h2>
         <line-chart
           :chartData="arrHospitalized"
@@ -27,9 +30,9 @@
         </line-chart>
       </div>
     </div>
-    <div class="row">
+    <div class="row mt-4">
       <!-- In ICU Chart -->
-      <div class="col card mt-5 mx-3" v-if="arrInIcu.length > 0">
+      <div class="col card mx-3" v-if="arrInIcu.length > 0">
         <h2>In ICU</h2>
         <line-chart
           :chartData="arrInIcu"
@@ -40,7 +43,7 @@
         </line-chart>
       </div>
       <!-- On Ventilators Chart -->
-      <div class="col card mt-5 mx-3" v-if="arrOnVentilators.length > 0">
+      <div class="col card mx-3" v-if="arrOnVentilators.length > 0">
         <h2>On Ventilators</h2>
         <line-chart
           :chartData="arrOnVentilators"
@@ -51,16 +54,16 @@
         </line-chart>
       </div>
     </div>
-    <div class="row">
+    <div class="row mt-4">
       <!-- The API is returning incomplete data for recovered -->
-      <!-- <div class="row mt-5" v-if="arrRecovered.length > 0">
+      <!-- <div class="row" v-if="arrRecovered.length > 0">
       <div class="col">
         <h2>Recovered</h2>
         <line-chart :chartData="arrRecovered" :options="chartOptions" label="Recovered" :chartColors="recoveredColors"> </line-chart>
       </div>
     </div> -->
       <!-- Deaths Chart -->
-      <div class="col card mt-5 mx-3" v-if="arrDeaths.length > 0">
+      <div class="col card mx-3" v-if="arrDeaths.length > 0">
         <h2>Deaths</h2>
         <line-chart
           :chartData="arrDeaths"
@@ -170,6 +173,6 @@ h2 {
   text-align: center;
 }
 .card {
-    background-color: #F5F5F5!important;
+  background-color: #f5f5f5 !important;
 }
 </style>
